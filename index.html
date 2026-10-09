@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bp-grid"></div><div class="bp-glow"></div><div class="bp-scan"></div>
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <svg class="logo-mark" viewBox="0 0 26 26" fill="none">
+        <circle cx="13" cy="13" r="11" stroke="#5EEAD4" stroke-width="1.4"/>
+        <path d="M13 4 V22 M4 13 H22" stroke="#5EEAD4" stroke-width="1" opacity=".5"/>
+        <circle cx="13" cy="13" r="3.2" fill="#FF7A45"/>
+      </svg>
+      <div>Hansler<small>инженерный помощник</small></div>
+    </div>
+    <div class="nav-links">
+      <a href="#how">Как это работает</a>
+      <a href="#materials">Материалы</a>
+      <a href="proekt.html">Создать деталь </a>
+    </div>
+    <div class="nav-cta">
+      <button class="theme-toggle" id="theme-toggle-btn" title="Сменить тему" aria-label="Сменить тему">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8l1.8-1.8M18 6l1.8-1.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </button>
+      <div id="nav-auth-slot"></div>
+    </div>
+  </div>
+</nav>
+
+<div class="slide-nav" id="slide-nav" aria-label="Навигация по разделам">
+  <button class="slide-dot" data-slide="hero" aria-label="Главная">1<span class="dot-tip">Главная</span></button>
+  <button class="slide-dot" data-slide="how" aria-label="Как это работает">2<span class="dot-tip">Как это работает</span></button>
+  <button class="slide-dot" data-slide="materials" aria-label="Материалы">3<span class="dot-tip">Материалы</span></button>
+  <a class="slide-dot slide-dot-cta" href="proekt.html" aria-label="Собрать деталь">→<span class="dot-tip">Собрать деталь</span></a>
+</div>
+
+<div class="wrap">
+  <section id="hero" class="hero slide">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> инструмент для курсовых, дипломов и первых прототипов</div>
+      <h1>Соберите деталь — система подберёт <span class="u">материал</span>, посчитает массу и стоимость</h1>
+      <p class="lead">Введите параметры своего проекта — «Hansler» подскажет материал, рассчитает размеры и массу, проверит простые инженерные ограничения и соберёт спецификацию, которую можно скачать.</p>
+      <div class="hero-cta">
+        <a href="proekt.html" id="start-project-btn" class="btn btn-primary">Начать проект →</a>
+        <a href="#how" class="btn btn-ghost">Как это устроено</a>
+      </div>
+      <div class="quicknav">
+        <a href="#how" class="qn-btn"><span class="qn-n">1</span> Как это работает</a>
+        <a href="#materials" class="qn-btn"><span class="qn-n">2</span> Материалы</a>
+        <a href="proekt.html" class="qn-btn"><span class="qn-n">3</span> Создать деталь</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><b>10</b><span>типов деталей</span></div>
+        <div class="hstat"><b>20</b><span>материалов в базе</span></div>
+        <div class="hstat"><b>16</b><span>инженерных проверок</span></div>
+      </div>
+    </div>
+    <div class="hero-3d">
+      <svg class="hero-illustration" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="200" r="150" stroke="var(--cyan)" stroke-width="1" stroke-dasharray="4 6"/>
+        <rect x="120" y="120" width="160" height="160" stroke="var(--orange)" stroke-width="1" transform="rotate(15 200 200)"/>
+        <path d="M60 200 H340 M200 60 V340" stroke="var(--line)" stroke-width="1"/>
+        <circle cx="200" cy="200" r="4" fill="var(--cyan)"/>
+        <path d="M90 90 L110 90 L110 110" stroke="var(--cyan)" stroke-width="1.5"/>
+        <path d="M310 310 L290 310 L290 290" stroke="var(--orange)" stroke-width="1.5"/>
+        <text x="70" y="130" font-family="monospace" font-size="9" fill="var(--text-faint)">R150</text>
+        <text x="300" y="270" font-family="monospace" font-size="9" fill="var(--text-faint)">45°</text>
+      </svg>
+      <div class="hero-ring r2"></div>
+      <div class="hero-ring r1"></div>
+      <canvas id="hero-canvas"></canvas>
+      <div class="tag-float tf1">⌀ <b>40.0</b> мм</div>
+      <div class="tag-float tf2">σ = <b>118</b> МПа</div>
+      <div class="tag-float tf3">m = <b>2.4</b> кг</div>
+      <div class="tag-float tf4">Ст3 · сталь</div>
+    </div>
+  </section>
+</div>
+<div class="wrap">
+  <section id="how" class="reveal slide">
+    <div class="section-head">
+      <div class="section-label">Процесс</div>
+      <h2>Пять шагов от идеи до спецификации</h2>
+      <p>Мастер ведёт по порядку: сначала деталь, потом материал, параметры, проверка расчётом — и в конце готовая спецификация.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step-card"><div class="step-num">1</div><h3>Тип детали</h3><p>Балка, вал, труба, пластина, кронштейн, зубчатое колесо, пружина, крепёж, стойка или диск.</p><div class="step-arrow">→</div></div>
+      <div class="step-card"><div class="step-num">2</div><h3>Материал</h3><p>20 вариантов — металлы, пластики, композит и дерево, с плотностью и ценой.</p><div class="step-arrow">→</div></div>
+      <div class="step-card"><div class="step-num">3</div><h3>Параметры</h3><p>Размеры и нагрузка — под конкретный тип детали, с подсказками по единицам.</p><div class="step-arrow">→</div></div>
+      <div class="step-card"><div class="step-num">4</div><h3>Расчёт</h3><p>Масса, стоимость, проверка на прочность и автоматический подбор самой лёгкой конструкции.</p><div class="step-arrow">→</div></div>
+      <div class="step-card"><div class="step-num">5</div><h3>Спецификация</h3><p>Список деталей проекта с итоговой массой и стоимостью — экспорт в CSV.</p></div>
+    </div>
+  </section>
+</div>
+<div class="wrap">
+  <section id="materials" class="reveal slide">
+    <div class="section-head">
+      <div class="section-label">База материалов</div>
+      <h2>Металлы, пластики, композит и дерево</h2>
+      <p>У каждого материала — плотность, ориентировочная цена и предел текучести. Нажмите на карточку, чтобы сразу перейти к расчёту.</p>
+    </div>
+    <div class="mat-strip" id="mat-strip"></div>
+  </section>
+</div>
+<footer>
+  <div class="wrap footer-inner">
+    <p>Hansler — учебный инструмент. Расчёты упрощены и не заменяют нормативные методики (ГОСТ, СП) для реальных конструкций.</p>
+    <div class="footer-links">
+      <a href="#how">Как это работает</a>
+      <a href="#materials">Материалы</a>
+      <a href="proekt.html">Создать деталь</a>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-stack" id="toast-stack"></div>
+
+<script src="features.js"></script>
+<script src="index.js"></script>
+<script src="assistant.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hansler — расчёт детали</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bp-grid"></div><div class="bp-glow"></div><div class="bp-scan"></div>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 26 26" fill="none">
+        <circle cx="13" cy="13" r="11" stroke="#5EEAD4" stroke-width="1.4"/>
+        <path d="M13 4 V22 M4 13 H22" stroke="#5EEAD4" stroke-width="1" opacity=".5"/>
+        <circle cx="13" cy="13" r="3.2" fill="#FF7A45"/>
+      </svg>
+      <div>Hansler<small>инженерный помощник</small></div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="back-link"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>На главную</a>
+      <a href="index.html#how">Как это работает</a>
+      <a href="index.html#materials">Материалы</a>
+      <a href="#app">Содать деталь</a>
+    </div>
+    <div class="nav-cta">
+      <button class="theme-toggle" id="theme-toggle-btn" title="Сменить тему" aria-label="Сменить тему">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8l1.8-1.8M18 6l1.8-1.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </button>
+      <div id="nav-auth-slot"></div>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <section id="app" class="reveal">
+    <div class="section-head">
+      <div class="section-label">Помощник</div>
+      <h2>Соберите деталь</h2>
+      <p>Пройдите шаги слева направо — справа всегда виден живой предпросмотр и текущие итоги.</p>
+    </div>
+
+    <div class="app-shell">
+      <div class="app-top">
+        <div class="wizard" id="wizard"></div>
+        <div class="wizard-hint" id="wizard-hint">Шаг 1 из 5</div>
+      </div>
+      <div class="app-body">
+        <div class="app-main" id="app-main"></div>
+        <div class="app-side">
+          <div class="side-canvas-wrap"><canvas id="side-canvas"></canvas></div>
+          <div class="side-cap">Упрощённая 3D-модель — пропорции ориентировочные</div>
+          <div class="side-summary" id="side-summary"></div>
+          <div class="side-live" id="side-live"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<footer>
+  <div class="wrap footer-inner">
+    <p>Hansler — учебный инструмент. Расчёты упрощены и не заменяют нормативные методики (ГОСТ, СП) для реальных конструкций.</p>
+    <div class="footer-links">
+      <a href="index.html#how">Как это работает</a>
+      <a href="index.html#materials">Материалы</a>
+      <a href="#app">Создать детаl</a>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-stack" id="toast-stack"></div>
+
+<script src="features.js"></script>
+<script src="proekt.js"></script>
+<script src="assistant.js"></script>
+</body>
+</html>
